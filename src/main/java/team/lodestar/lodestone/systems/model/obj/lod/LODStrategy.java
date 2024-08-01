@@ -38,7 +38,7 @@ public abstract class LODStrategy<T> implements LODBuilder<T> {
         @Override
         public LevelOfDetail<Float> getLODLevel(Vector3f modelPosition) {
             Vector3f cameraPosition = new Vector3f(Minecraft.getInstance().gameRenderer.getMainCamera().getPosition());
-            float distanceSq = ((modelPosition.x()*modelPosition.x())-(cameraPosition.x()*cameraPosition.x())) + ((modelPosition.y()*modelPosition.y())-(cameraPosition.y()*cameraPosition.y())) + ((modelPosition.z()*modelPosition.z())-(cameraPosition.z()*cameraPosition.z()));
+            float distanceSq = Math.abs(((modelPosition.x()*modelPosition.x())-(cameraPosition.x()*cameraPosition.x())) + ((modelPosition.y()*modelPosition.y())-(cameraPosition.y()*cameraPosition.y())) + ((modelPosition.z()*modelPosition.z())-(cameraPosition.z()*cameraPosition.z())));
 
             for (LevelOfDetail<Float> levelOfDetail : levelsOfDetail) {
                 if (distanceSq <= (levelOfDetail.argument()*levelOfDetail.argument())) {
